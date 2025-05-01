@@ -6,3 +6,9 @@ CREATE TABLE IF NOT EXISTS attendance (
     status TEXT NOT NULL,
     reason TEXT
 );
+
+CREATE TABLE IF NOT EXISTS students (
+    student_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    parent_phone TEXT NOT NULL
+);
