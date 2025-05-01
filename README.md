@@ -61,11 +61,17 @@ OR connect ESP8266 directly to internet via HTTP from Arduino sketch using AT co
 
 ## 💻 SOFTWARES NEEDED
 Software_______________________________Purpose
+
 Arduino IDE             -------------->	Upload code to Arduino
+
 XAMPP	                -------------->Local PHP + MySQL Server
+
 Python 3.x    	        -------------->To run GUI
+
 Required Python libs	-------------->tkinter, sqlite3
+
 Browser                 -------------->	Access PHP script (via IP)
+
 
 ## 📁 CODES PROVIDED
 1. r307_fingerprint.ino
@@ -88,44 +94,22 @@ Browser                 -------------->	Access PHP script (via IP)
     + PC GUI to view/edit attendance
 
     + Uses attendance.db SQLite file
-# 🖥️ SERVER SETUP (PHP + MySQL)
+# 🌐 SERVER SETUP
+Install XAMPP
 
-## 🧱 Step 1: Install XAMPP
-Download XAMPP
+Start Apache + MySQL
 
-Install and open Control Panel
+Create database attendance in phpMyAdmin
 
-Start Apache and MySQL
+Import create_attendance_table.sql
 
-## 📁 Step 2: Create attendance Database
-Open localhost/phpmyadmin
-
-Create DB: attendance
-
-Run this SQL in the SQL tab:
-
-```sql
-    CREATE TABLE attendance (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  student_id INT NOT NULL,
-  date DATE NOT NULL,
-  status VARCHAR(10) NOT NULL,
-  reason TEXT
-);
-```
-## 📁 Step 3: Place PHP File
-Copy attendance.php to:
+Place attendance.php in:
 ```swift
-    C:/xampp/htdocs/attendance/attendance.php
+C:/xampp/htdocs/attendance/attendance.php
 ```
 Open it and update DB credentials if needed
 
-## 🌐 Step 4: Get Localhost IP
-Open CMD → type ipconfig
-
-Look for something like 192.168.x.x
-
-Your ESP8266 should send requests to:
+Get your local IP (e.g., 192.168.1.5) and use:
 ```arduino
 http://192.168.x.x/attendance/attendance.php
 ```
@@ -158,42 +142,64 @@ Mark/update reasons
 
 Export reports later if needed
 
-## 📁 Files needed on PC:
-
-tkinter_dashboard.py
-
-attendance.db (SQLite file; gets created automatically)
 
 ## ✅ FINAL SETUP AT SCHOOL GATE
-Mount:
++ Mount:
 
-R307 + Arduino + ESP8266 + SIM800L in a box
+    + R307 + Arduino + ESP8266 + SIM800L in a box
 
-Power:
++ Power:
 
-Stable 5V/2A adapter
+    + Stable 5V/2A adapter
 
-Network:
++ Network:
 
-Connect ESP8266 to school Wi-Fi
+    + Connect ESP8266 to school Wi-Fi
 
-Server:
++ Server:
 
-PC inside office runs Apache/MySQL + PHP
+    + PC inside office runs Apache/MySQL + PHP
 
-Use local IP as endpoint
+    + Use local IP as endpoint
 
-Dashboard:
++ Dashboard:
 
-Tkinter dashboard runs on office PC
+    + Tkinter dashboard runs on office PC
 
 ## 📦 PROJECT FILES INCLUDED:
 File_______________________________________________Description
 
 esp8266_attendance.ino	    -------------->    ESP8266 + SIM800L HTTP + SMS logic
+
 r307_fingerprint.ino	    -------------->    Arduino + R307 code
+
 attendance.php            	-------------->    Server-side script for logging data
+
 create_attendance_table.sql	-------------->    SQL to create the MySQL table
+
 tkinter_dashboard.py        -------------->    Desktop GUI with SQLite
+
+
+## 📁 CODES PROVIDED
+1. r307_fingerprint.ino
+    + Handles fingerprint enrollment + matching
+
+2. esp8266_attendance.ino
+    + Sends data via HTTP
+
+    + Sends SMS via SIM800L
+
+    + Logic for time check, ID detection
+
+3. attendance.php
+    + Accepts HTTP POST request and writes to MySQL
+
+4. create_attendance_table.sql
+    + SQL to create attendance table in MySQL
+
+5. tkinter_dashboard.py
+    + PC GUI to view/edit attendance
+
+    + Uses attendance.db SQLite file
 
 
